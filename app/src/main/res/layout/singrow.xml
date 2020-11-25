@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:elevation="5dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+        <RelativeLayout
+            android:id="@+id/bg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/user_bg">
+            <TextView
+                android:id="@+id/getFirstCharacter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="A"></TextView>
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/bg"
+            android:text="This is demo"
+            android:textColor="#000"
+            android:textSize="12dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/bg"
+            android:text="This is couse name"
+            android:textColor="#000"
+            android:textSize="12dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/bg"
+            android:text="This is Email name"
+            android:textColor="#000"
+            android:textSize="12dp"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_date"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/bg"
+            android:text="This is Email name"
+            android:textColor="#000"
+            android:textSize="12dp"
+            android:textStyle="bold"></TextView>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,166 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.ngocthien.remindertj.About.BlankFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        tools:context=".About.AboutFragment">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="183dp"
+            android:layout_height="187dp"
+
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/info1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiy_password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="296dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="268dp"
+            android:hint="Password"
+            android:textColorHint="@color/amber"
+            app:boxStrokeColor="#FFFFFF"
+            app:boxStrokeErrorColor="#CDDC39"
+            app:counterTextColor="@color/accent"
+            app:hintTextColor="@color/amber"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:textColor="@color/primary_lightest" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Profile"
+            android:textColor="@color/icons"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.322" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiy_phonenumber"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="296dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="332dp"
+            android:hint="Phone number"
+            android:textColorHint="@color/amber"
+            app:boxStrokeColor="#FFFFFF"
+            app:boxStrokeErrorColor="#CDDC39"
+            app:counterTextColor="@color/accent"
+            app:hintTextColor="@color/amber"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phonenumber_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:textColor="@color/primary_lightest" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiy_repassword"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="296dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="204dp"
+            android:hint="Repassword"
+            android:textColorHint="@color/amber"
+            app:boxStrokeColor="#FFFFFF"
+            app:boxStrokeErrorColor="#CDDC39"
+            app:counterTextColor="@color/accent"
+            app:hintTextColor="@color/amber"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/repassword_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:textColor="@color/primary_lightest" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="148dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginBottom="128dp"
+            android:backgroundTint="#34558B"
+            android:text="Save"
+            android:textColor="@color/icons"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_change_password"
+            android:layout_width="148dp"
+            android:layout_height="49dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginRight="56dp"
+            android:layout_marginBottom="128dp"
+            android:backgroundTint="#34558B"
+            android:text="Change password"
+            android:textColor="@color/icons"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>
