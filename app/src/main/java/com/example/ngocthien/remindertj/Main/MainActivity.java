@@ -1,12 +1,15 @@
 package com.example.ngocthien.remindertj.Main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import com.example.ngocthien.remindertj.About.BlankFragment;
 import com.example.ngocthien.remindertj.Chatbot.ChatbotActivity;
+//import com.example.ngocthien.remindertj.GroupTask.AddMember;
+import com.example.ngocthien.remindertj.GroupTask.AddMember;
 import com.example.ngocthien.remindertj.Login.LoginActivity;
 import com.example.ngocthien.remindertj.Login.Start_Login;
 import com.example.ngocthien.remindertj.model;
@@ -25,6 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ngocthien.remindertj.AboutFragment;
 import com.example.ngocthien.remindertj.AppDefault.AppDefaultActivity;
@@ -39,13 +43,19 @@ public class MainActivity extends AppDefaultActivity implements NavigationView.O
     private DrawerLayout drawer;
     NavigationView navigationView;
     myadapter adapter;
-    SharedPreferences sharedPreferences;
+    public static final String MyPREFERENCES = "MYPREF";
+    public static final String GETKEY_ITEM_NAME ="item name";
+    SharedPreferences sharedPreferences, sharedPreferences_getKey;
+    String a;
+    Intent intent;
     TextView nav_phonenumber, nav_about_phonenumber;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         sharedPreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences_getKey = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        saveData();
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -70,9 +80,16 @@ public class MainActivity extends AppDefaultActivity implements NavigationView.O
             navigationView.setCheckedItem(R.id.home);
         }
     }
+    public void saveData(){
+         intent =getIntent();
+        SharedPreferences.Editor editor = sharedPreferences_getKey.edit();
+        editor.putString(GETKEY_ITEM_NAME, intent.getStringExtra("GETKEY"));
+        Toast.makeText(this, "Hellllo" + intent.getStringExtra("GETKEY"), Toast.LENGTH_SHORT).show();
+        editor.apply();
+    }
     public void loadData(){
-        String a = sharedPreferences.getString(Start_Login.PHONENUMBER_STARTlOGIN, "");
-        nav_phonenumber.setText(a);
+        a = sharedPreferences.getString(Start_Login.PHONENUMBER_STARTlOGIN, "");
+        //nav_phonenumber.setText(a);
     }
     @Override
     protected int contentViewLayoutRes() {
@@ -86,6 +103,7 @@ public class MainActivity extends AppDefaultActivity implements NavigationView.O
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
        getMenuInflater().inflate(R.menu.drawer_menu, menu);
+
         MenuItem item  =menu.findItem(R.id.search);
         SearchView searchView = (SearchView)item.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -94,25 +112,39 @@ public class MainActivity extends AppDefaultActivity implements NavigationView.O
                 processserch(s);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String s) {
                 processserch(s);
                 return false;
             }
         });
-
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.item1:
+                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.item2:
+                Toast.makeText(getApplicationContext(),"Item 2 Selected",Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.item3:
+                Toast.makeText(getApplicationContext(),"Item 3 Selected",Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
     public void processserch(String searchItem){
         FirebaseRecyclerOptions<model> options =
                 new FirebaseRecyclerOptions.Builder<model>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("AddTaskAction").orderByChild("title").startAt(searchItem).endAt(searchItem + "\uf8ff"), model.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("UserInfo").child(a).child("GroupTasks").child(intent.getStringExtra("GETKEY")).child("SingleTask").orderByChild("title").startAt(searchItem).endAt(searchItem + "\uf8ff"), model.class)
                         .build();
         adapter = new myadapter(options);
         adapter.startListening();
         recview.setAdapter(adapter);
-
     }
     @Override
     public void onBackPressed() {
@@ -134,6 +166,9 @@ public class MainActivity extends AppDefaultActivity implements NavigationView.O
                     break;
             case  R.id.chatbot:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChatbotActivity()).commit();
+            case R.id.addmember:
+                Intent intent = new Intent(MainActivity.this, AddMember.class);
+                startActivity(intent);
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

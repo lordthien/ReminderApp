@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ngocthien.remindertj.AddToDo.AddToDoFragment;
+import com.example.ngocthien.remindertj.GroupTask.ActivityAddMember;
 import com.example.ngocthien.remindertj.Main.MainFragment;
 import com.example.ngocthien.remindertj.Utility.ToDoItem;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -49,8 +51,9 @@ public class myadapter extends FirebaseRecyclerAdapter<model,myadapter.myviewhol
     String title, description, date, time ;
     public static String TAG1 = myadapter.class.getSimpleName();
     public static final String NAME = "name";
+    model model;
 
-
+    ActivityAddMember activityAddMember = new ActivityAddMember();
     public myadapter(@NonNull FirebaseRecyclerOptions<model> options)
     {
         super(options);
@@ -74,6 +77,9 @@ public class myadapter extends FirebaseRecyclerAdapter<model,myadapter.myviewhol
         holder.date.setText(model.getDate());
         holder.time.setText(model.getTime());
 
+
+
+        ;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,20 +131,15 @@ public class myadapter extends FirebaseRecyclerAdapter<model,myadapter.myviewhol
         RelativeLayout relativeLayout;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
-            title =itemView.findViewById(R.id.tv_title);
+            title =(TextView) itemView.findViewById(R.id.tv_title);
             description=itemView.findViewById(R.id.tv_description);
             date =itemView.findViewById(R.id.tv_date);
             time =itemView.findViewById(R.id.tv_time);
+
             relativeLayout =itemView.findViewById(R.id.bg);
         }
     }
-    public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager =
-                (InputMethodManager) activity.getSystemService(
-                        Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(
-                activity.getCurrentFocus().getWindowToken(), 0);
-    }
+
 }
 
 

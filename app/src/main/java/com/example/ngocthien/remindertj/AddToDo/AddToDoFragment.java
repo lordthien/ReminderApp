@@ -1,7 +1,9 @@
 package com.example.ngocthien.remindertj.AddToDo;
 
 import android.animation.Animator;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -10,6 +12,9 @@ import androidx.annotation.Nullable;
 
 import com.example.ngocthien.remindertj.FilterHelper;
 import com.example.ngocthien.remindertj.Login.Adapter;
+import com.example.ngocthien.remindertj.Login.LoginActivity;
+import com.example.ngocthien.remindertj.Login.Start_Login;
+import com.example.ngocthien.remindertj.Main.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.core.app.NavUtils;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +35,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ngocthien.remindertj.Analytics.AnalyticsApplication;
 import com.example.ngocthien.remindertj.AppDefault.AppDefaultFragment;
@@ -58,7 +64,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
     DatabaseReference databaseReference;
     private EditText mToDoTextBodyEditText;
     private EditText mToDoTextBodyDescription;
-
+    String key;
     private SwitchCompat mToDoDateSwitch;
     //    private TextView mLastSeenTextView;
     private LinearLayout mUserDateSpinnerContainingLinearLayout;
@@ -70,7 +76,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
     private EditText mTimeEditText;
     private String mDefaultTimeOptions12H[];
     private String mDefaultTimeOptions24H[];
-
+    String a;
     private Button mChooseDateButton;
     private Button mChooseTimeButton;
 
@@ -91,7 +97,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
     private LinearLayout mContainerLayout;
     private String theme;
     AnalyticsApplication app;
-
+    SharedPreferences sharedPreferences, sharedPreferences1;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -100,8 +106,10 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
         //Need references to these to change them during light/dark mode
         ImageButton reminderIconImageButton;
         TextView reminderRemindMeTextView;
-
-
+        sharedPreferences1 = getActivity().getSharedPreferences(MainActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences(Start_Login.MyPREFERENCES_STARTLOGIN, Context.MODE_PRIVATE);
+        loadData();
+        loadData1();
         theme = getActivity().getSharedPreferences(MainFragment.THEME_PREFERENCES, MODE_PRIVATE).getString(MainFragment.THEME_SAVED, MainFragment.LIGHTTHEME);
         if (theme.equals(MainFragment.LIGHTTHEME)) {
             getActivity().setTheme(R.style.CustomStyle_LightTheme);
@@ -267,7 +275,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
                 hideKeyboard(mToDoTextBodyEditText);
                 hideKeyboard(mToDoTextBodyDescription);
                 rootNode= FirebaseDatabase.getInstance();
-                databaseReference = rootNode.getReference("AddTaskAction");
+                databaseReference = rootNode.getReference().child("UserInfo").child(a).child("GroupTasks").child(key).child("SingleTask");
                 Adapter_AddToDoTask adapter_addToDoTask = new Adapter_AddToDoTask(mToDoTextBodyEditText.getText().toString(), mToDoTextBodyDescription.getText().toString(),mDateEditText.getText().toString(),mTimeEditText.getText().toString());
                 databaseReference.child(mToDoTextBodyEditText.getText().toString()).setValue(adapter_addToDoTask);
             }
@@ -557,7 +565,10 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
             mUserDateSpinnerContainingLinearLayout.setVisibility(View.INVISIBLE);
         }
     }
-
+    public void loadData(){
+         a = sharedPreferences.getString(Start_Login.PHONENUMBER_STARTlOGIN, "");
+        Toast.makeText(app, "Hello "  + a, Toast.LENGTH_SHORT).show();
+    }
     public void setEnterDateLayoutVisibleWithAnimations(boolean checked) {
         if (checked) {
             setReminderTextView();
@@ -609,7 +620,10 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
 
     }
 
-
+    public void loadData1(){
+        key = sharedPreferences.getString(MainActivity.GETKEY_ITEM_NAME, "");
+        Toast.makeText(app, "KEy VALUE" + key, Toast.LENGTH_SHORT).show();
+    }
     @Override
     protected int layoutRes() {
         return R.layout.fragment_add_to_do;

@@ -10,7 +10,6 @@
         android:id="@+id/myCoordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <FrameLayout
             android:id="@+id/attachment_layout"
             android:layout_width="match_parent"
@@ -26,7 +25,6 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/empty_view_bg" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,9 +59,6 @@
             android:src="@drawable/ic_add_white_24dp"
             app:layout_anchor="@id/attachment_layout"
             app:layout_anchorGravity="bottom|right|end"
-
             />
-
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>

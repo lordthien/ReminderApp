@@ -71,7 +71,6 @@ public class BlankFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,7 +86,7 @@ public class BlankFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    Toast.makeText(getActivity(), "Hel;lloo", Toast.LENGTH_SHORT).show();
+                  // Toast.makeText(getActivity(), "Hellloo", Toast.LENGTH_SHORT).show();
                     userInfo.setPhone(dataSnapshot.child("phone").getValue(String.class));
                     userInfo.setPassword(dataSnapshot.child("password").getValue(String.class));
                     userInfo.setRepassword(dataSnapshot.child("repassword").getValue(String.class));

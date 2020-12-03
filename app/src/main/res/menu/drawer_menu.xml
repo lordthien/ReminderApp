@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <item android:id="@+id/search"
+        app:showAsAction="always"
+        android:icon="@drawable/loupe"
+        android:title="Search"
+        app:actionViewClass="android.widget.SearchView"
+        />
     <group android:checkableBehavior="single">
-        <item android:id="@+id/search"
-            app:showAsAction="always"
-            android:icon="@drawable/loupe"
-            android:title="Search"
-            app:actionViewClass="android.widget.SearchView"
-            />
         <item
             android:id="@+id/home"
             android:icon="@drawable/home"
@@ -30,5 +28,9 @@
             android:id="@+id/logout"
             android:icon="@drawable/logout"
             android:title="Logout"></item>
+        <item
+            android:id="@+id/addmember"
+            android:icon="@drawable/logout"
+            android:title="Add Member"></item>
     </group>
 </menu>

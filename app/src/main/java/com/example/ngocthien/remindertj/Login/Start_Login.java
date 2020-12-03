@@ -11,9 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.ngocthien.remindertj.AddGroupTask.MainAddGroupTask;
 import com.example.ngocthien.remindertj.Main.MainActivity;
 import com.example.ngocthien.remindertj.R;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +28,7 @@ public class Start_Login extends AppCompatActivity {
     TextInputEditText phonenumber;
     TextInputEditText password1;
     FirebaseDatabase rootNode;
+    String uid;
     DatabaseReference databaseReference;
     String phone_fb;
     String password_fb;
@@ -68,12 +72,14 @@ public class Start_Login extends AppCompatActivity {
                      Toast.makeText(Start_Login.this, "" + phonenumber.getText().toString(), Toast.LENGTH_SHORT).show();
                      saveData(p);
                          rootNode= FirebaseDatabase.getInstance();
-                         databaseReference = rootNode.getReference().child("UserInfo").child(p);
+                         databaseReference = rootNode.getReference().child("UserInfo").child(phonenumber.getText().toString());
+
                          databaseReference.addValueEventListener(new ValueEventListener() {
                              @Override
                              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                  if(dataSnapshot.exists()){
                                      phone_fb = dataSnapshot.child("phone").getValue(String.class);
+                                    // Toast.makeText(Start_Login.this, "Hello ccc" + phone_fb, Toast.LENGTH_SHORT).show();
                                      password_fb = dataSnapshot.child("password").getValue(String.class);
                                      String phoneNumberUserInput = phonenumber.getText().toString();
                                      // Toast.makeText(Start_Login.this, "password_fb" + password_fb, Toast.LENGTH_SHORT).show();
@@ -81,7 +87,7 @@ public class Start_Login extends AppCompatActivity {
 //                             if(phoneNumberUserInput.equals(phone_fb))
 //                             {
                                      if(password_fb.equals(password1.getText().toString())){
-                                         Intent intent = new Intent(Start_Login.this, MainActivity.class);
+                                         Intent intent = new Intent(Start_Login.this, MainAddGroupTask.class);
                                          startActivity(intent);
                                      }
                                      else
@@ -101,8 +107,6 @@ public class Start_Login extends AppCompatActivity {
                      }
                  }
          });
-
-
     }
     public void saveData(String phone){
         SharedPreferences.Editor editor = sharedPreferences.edit();

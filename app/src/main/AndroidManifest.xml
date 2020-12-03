@@ -11,54 +11,53 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/CustomStyle.DarkTheme">
-        <activity android:name=".test" android:windowSoftInputMode="stateHidden">
-
-        </activity>
-        <activity android:name=".Login.ResetPasswordActivity" android:windowSoftInputMode="stateHidden">
-
-        </activity>
-        <activity android:name=".Login.ForgotPasswordActivity" android:windowSoftInputMode="stateHidden">
-
-            </activity>
-        <activity android:name=".Login.PasswordActivity" />
-        <activity android:name=".Login.Start_Login" android:windowSoftInputMode="stateHidden">
-
-        </activity>
-        <activity android:name=".Login.homepage" android:windowSoftInputMode="stateHidden">
-
-        </activity>
-        <activity android:name=".Login.LoginActivity">
+        <activity android:name=".GroupTask.ActivityAddMember"></activity>
+        <activity android:name=".GroupTask.AddMember" />
+        <activity
+            android:name=".AddGroupTask.EditGroupTask"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".AddGroupTask.ActivityAddGroupTask"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".AddGroupTask.MainAddGroupTask"
+            android:windowSoftInputMode="adjustResize">
         </activity>
         <activity
-            android:name=".Main.MainActivity"
-            android:label="@string/app_name"
-            android:windowSoftInputMode="stateHidden"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait">
+            android:name=".test"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Login.ResetPasswordActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Login.ForgotPasswordActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Login.PasswordActivity" />
+        <activity
+            android:name=".Login.Start_Login"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddToDo.AddToDoActivity"
-            android:windowSoftInputMode="stateHidden"
-            android:parentActivityName=".Main.MainActivity"
-            android:screenOrientation="portrait" />
+            android:name=".Login.homepage"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Login.LoginActivity" />
         <activity
-            android:name=".About.AboutActivity"
+            android:name=".Main.MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="stateHidden"
-            android:parentActivityName=".Main.MainActivity" />
-
-
-        <service android:name=".Utility.TodoNotificationService" />
-        <service android:name=".Utility.DeleteNotificationService" />
-
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".Settings.SettingsActivity"
-            android:parentActivityName=".Main.MainActivity" />
-
+            android:name=".AddToDo.AddToDoActivity"
+            android:parentActivityName=".Main.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".About.AboutActivity"
+            ></activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

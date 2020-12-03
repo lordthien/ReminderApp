@@ -3,23 +3,19 @@
     <string name="navigation_drawer_open" translatable="false">open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">close navigation drawer</string>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-
         <item name="android:windowActionBar">false</item>
-
     </style>
-
     <style name="Autocomplete">
         <item name="colorControlNormal">#F0F5F9</item>
         <item name="colorControlActivated">#F0F5F9</item>
     </style>
-
     <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeWidth">2dp</item>
     </style>
 
-    <style name="CustomStyle" parent="Theme.MaterialComponents.Light.NoActionBar" >
+    <style name="CustomStyle" parent="Theme.MaterialComponents.Light" >
         <item name="colorAccent">@color/accent</item>
         <item name="colorPrimary">@color/primary_lightest</item>
         <item name="colorPrimaryDark">@color/primary_lightest</item>

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import com.example.ngocthien.remindertj.Login.Start_Login;
 import com.example.ngocthien.remindertj.model;
 import com.example.ngocthien.remindertj.myadapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -55,6 +56,8 @@ import com.example.ngocthien.remindertj.Utility.RecyclerViewEmptySupport;
 import com.example.ngocthien.remindertj.Utility.StoreRetrieveData;
 import com.example.ngocthien.remindertj.Utility.ToDoItem;
 import com.example.ngocthien.remindertj.Utility.TodoNotificationService;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -72,10 +75,13 @@ import static android.content.Context.MODE_PRIVATE;
 import static android.util.Log.*;
 
 public class MainFragment extends AppDefaultFragment{
+    private static final String TAG1 = "USER ID"  ;
     private RecyclerViewEmptySupport mRecyclerView;
     private FloatingActionButton mAddToDoItemFAB;
     public static RecyclerView recview;
     myadapter adapter;
+    String key;
+
     private CoordinatorLayout mCoordLayout;
     public static final String TODOITEM = "com.avjindersinghsekhon.com.avjindersinghsekhon.minimaltodo.MainActivity";
    // private MainFragment.BasicListAdapter adapter;
@@ -91,6 +97,7 @@ public class MainFragment extends AppDefaultFragment{
     public static final String SHARED_PREF_DATA_SET_CHANGED = "com.avjindersekhon.datasetchanged";
     public static final String CHANGE_OCCURED = "com.avjinder.changeoccured";
     private int mTheme = -1;
+    String a;
     private String theme = "name_of_the_theme";
     public static final String THEME_PREFERENCES = "com.avjindersekhon.themepref";
     public static final String RECREATE_ACTIVITY = "com.avjindersekhon.recreateactivity";
@@ -99,6 +106,7 @@ public class MainFragment extends AppDefaultFragment{
     public static final String LIGHTTHEME = "com.avjindersekon.lighttheme";
     public static String TAG = MainFragment.class.getSimpleName();
     FirebaseRecyclerOptions<model> options;
+    SharedPreferences sharedPreferences, sharedPreferences1;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = firebaseDatabase.getReference();
     private AnalyticsApplication app;
@@ -107,43 +115,39 @@ public class MainFragment extends AppDefaultFragment{
             "Get car washed",
             "Get my dry cleaning"
     };
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         app = (AnalyticsApplication) getActivity().getApplication();
-
         theme = getActivity().getSharedPreferences(THEME_PREFERENCES, MODE_PRIVATE).getString(THEME_SAVED, LIGHTTHEME);
+
         if (theme.equals(LIGHTTHEME)) {
             mTheme = R.style.CustomStyle_LightTheme;
         } else {
             mTheme = R.style.CustomStyle_DarkTheme;
         }
         this.getActivity().setTheme(mTheme);
-
-
+        sharedPreferences = getActivity().getSharedPreferences(MainActivity.MyPREFERENCES, MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences(Start_Login.MyPREFERENCES_STARTLOGIN, MODE_PRIVATE);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREF_DATA_SET_CHANGED, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        loadData();
+        loadData1();
         editor.putBoolean(CHANGE_OCCURED, false);
         editor.apply();
 
-//        storeRetrieveData = new StoreRetrieveData(getContext(), FILENAME);
-//        mToDoItemsArrayList = getLocallyStoredData(storeRetrieveData);
-//        adapter = new myadapter(mToDoItemsArrayList);
-        //setAlarms();
+
         recview = view.findViewById(R.id.toDoRecyclerView);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
         recview.setHasFixedSize(true);
         FirebaseRecyclerOptions<model> options =
                 new FirebaseRecyclerOptions.Builder<model>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("AddTaskAction"), model.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("UserInfo").child(a).child("GroupTasks").child(key).child("SingleTask"), model.class)
                         .build();
 
         adapter = new myadapter(options);
        // e(TAG, "onViewCreated: " );
         recview.setAdapter(adapter);
-
-
 
         //mCoordLayout = (CoordinatorLayout) view.findViewById(R.id.myCoordinatorLayout);
         mAddToDoItemFAB = (FloatingActionButton) view.findViewById(R.id.addToDoItemFAB);
@@ -241,6 +245,7 @@ public class MainFragment extends AppDefaultFragment{
 //
 //
 //    }
+
 @Override
 public void onStart() {
     super.onStart();
@@ -269,8 +274,6 @@ public void onStart() {
 //        }
 //    }
 //
-
-
     public void addThemeToSharedPreferences(String theme) {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(THEME_PREFERENCES, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -278,27 +281,7 @@ public void onStart() {
         editor.apply();
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
 
-
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        return true;
-//    }
-    public void processserch(String searchItem){
-        FirebaseRecyclerOptions<model> options =
-                new FirebaseRecyclerOptions.Builder<model>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("AddTaskAction").orderByChild("title").startAt(searchItem).endAt(searchItem + "\uf8ff"), model.class)
-                        .build();
-        adapter = new myadapter(options);
-        adapter.startListening();
-        recview.setAdapter(adapter);
-
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -574,7 +557,14 @@ public void onStart() {
 //        }
 //    }
 
-
+        public void loadData(){
+            a = sharedPreferences.getString(Start_Login.PHONENUMBER_STARTlOGIN, "");
+            Toast.makeText(app, "Hello "  + a, Toast.LENGTH_SHORT).show();
+        }
+    public void loadData1(){
+        key = sharedPreferences.getString( MainActivity.GETKEY_ITEM_NAME, "");
+        Toast.makeText(app, "Hellovalue "  + key, Toast.LENGTH_SHORT).show();
+    }
     @Override
     public void onDestroy() {
 
@@ -607,6 +597,4 @@ public void onStart() {
     public static MainFragment newInstance() {
         return new MainFragment();
     }
-
-
 }

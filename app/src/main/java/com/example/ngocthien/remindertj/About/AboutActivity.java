@@ -48,9 +48,8 @@ public class AboutActivity extends AppDefaultActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.about_layout);
+        setContentView(R.layout.fragment_blank);
         AboutFragment frag = (AboutFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-
 
         theme = getSharedPreferences(MainFragment.THEME_PREFERENCES, MODE_PRIVATE).getString(MainFragment.THEME_SAVED, MainFragment.LIGHTTHEME);
         if (theme.equals(MainFragment.DARKTHEME)) {
