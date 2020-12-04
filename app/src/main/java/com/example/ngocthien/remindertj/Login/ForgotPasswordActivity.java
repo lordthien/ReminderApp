@@ -26,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
-
 public class ForgotPasswordActivity extends AppCompatActivity {
     Button btn_send;
     TextInputEditText recover_phonenumber;
