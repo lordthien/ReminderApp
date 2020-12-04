@@ -33,6 +33,9 @@
             android:name=".Login.ForgotPasswordActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Login.PasswordActivity" />
+        <activity android:name=".NewStartLogin">
+
+        </activity>
         <activity
             android:name=".Login.Start_Login"
             android:windowSoftInputMode="stateHidden">

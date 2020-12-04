@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ngocthien.remindertj.AddGroupTask.MainAddGroupTask;
@@ -24,7 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Start_Login extends AppCompatActivity {
-    Button forgotPassword, btn_Signin, registered, btn_forgotPassword;
+    Button forgotPassword, btn_Signin;
+    TextView btn_forgotPassword, registered;
     TextInputEditText phonenumber;
     TextInputEditText password1;
     FirebaseDatabase rootNode;
@@ -44,9 +46,9 @@ public class Start_Login extends AppCompatActivity {
         setContentView(R.layout.activity_start__login);
          phonenumber = findViewById(R.id.editPhone);
          password1 = findViewById(R.id.editPassword);
-         registered = findViewById(R.id.register_btn);
+         registered = findViewById(R.id.tv_signup);
          btn_Signin = findViewById(R.id.signup_btn);
-         btn_forgotPassword = findViewById(R.id.fotgotpassword_btn);
+         btn_forgotPassword = findViewById(R.id.tv_forgot_password);
 
         btn_forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override

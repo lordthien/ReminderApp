@@ -9,7 +9,6 @@
     android:orientation="vertical"
     android:padding="20dp"
     tools:context="com.example.ngocthien.remindertj.Login.LoginActivity">
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
         android:layout_width="197dp"
@@ -24,7 +23,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/animation" />
+        app:lottie_rawRes="@raw/hellohi" />
 
     <TextView
         android:id="@+id/textView2"

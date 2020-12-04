@@ -36,14 +36,11 @@ import java.util.concurrent.TimeUnit;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG1 = "USER ID:";
     Button btnGetVC, btnSI;
-    TextInputEditText editTextPhone, editTextCode;
-    TextInputLayout txtInput1, txtInput2;
+    String phone;
     FirebaseAuth mAuth;
     String codeSent;
-    String uid;
-    public String phone;
-    String fb_phone;
-
+    TextInputEditText editTextPhone, editTextCode;
+    TextInputLayout txtInput1, txtInput2;
     public static final String MyPREFERENCES = "MYPREF";
     public static final String FB_PHONENUMBER ="phonenumber";
     public static final String PHONENUMBER = "PHoneNUmber";
