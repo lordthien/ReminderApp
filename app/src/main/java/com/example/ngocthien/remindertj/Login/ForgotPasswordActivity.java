@@ -32,7 +32,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference databaseReference;
     String phone_fb;
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    String abc;
     String codeSent;
     TextInputEditText verfiCode;
     Button btn_verifyCode;
