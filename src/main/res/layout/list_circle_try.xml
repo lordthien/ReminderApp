@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:id="@+id/listItemLinearLayout"
+              android:layout_marginBottom="1dp"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:layout_height="wrap_content"
+              xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ffffff">
+
+    <ImageView
+        android:background="@color/amber"
+        android:id="@+id/toDoListItemColorImageView"
+        android:gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+        <TextView
+            android:id="@+id/toDoListItemTextview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+
+            android:text="tran trong tin"
+            android:gravity="start|bottom"
+            android:lines="2"
+            android:textColor="@color/amber"
+            android:textSize="20dp"
+            tools:ignore="MissingPrefix" />
+
+
+
+
+
+</LinearLayout>
