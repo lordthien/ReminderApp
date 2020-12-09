@@ -32,8 +32,6 @@ public class ActivityAddGroupTask extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-  //      getSupportActionBar().setHomeButtonEnabled(true);
         setContentView(R.layout.activity_add_group_task2);
         sharedPreferences = getSharedPreferences(Start_Login.MyPREFERENCES_STARTLOGIN, MODE_PRIVATE);
         loadData();

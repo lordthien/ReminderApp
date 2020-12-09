@@ -38,7 +38,11 @@ public class PasswordActivity extends AppCompatActivity {
                 String password  = enterPassword.getText().toString();
                 String repassword = enterRePassword.getText().toString();
                 if(password.isEmpty() || repassword.isEmpty()){
-                    Toast.makeText(PasswordActivity.this, "You need to fill in password and repassword", Toast.LENGTH_SHORT).show();
+                    enterPassword.setError("Password can not be blank");
+                    enterPassword.requestFocus();
+                    enterRePassword.setError("Password can not be blank");
+                    enterRePassword.requestFocus();
+                   // Toast.makeText(PasswordActivity.this, "You need to fill in password and repassword", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     if(password.equals(repassword)){

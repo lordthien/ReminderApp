@@ -27,7 +27,6 @@ public class ChatbotActivity extends Fragment implements View.OnClickListener {
         View view =  inflater.inflate(R.layout.activity_chatbot,container,false);
         getStarted = view.findViewById(R.id.getStarted);
         getStarted.setOnClickListener(this);
-
         return view;
     }
 

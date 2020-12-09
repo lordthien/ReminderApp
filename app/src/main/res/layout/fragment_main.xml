@@ -22,19 +22,11 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/empty_view_bg" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:paddingBottom="8dp"
-                android:text="@string/no_to_dos"
-                android:fontFamily="@font/autour_one"
-                android:textColor="@color/secondary_text"
-                android:textSize="16sp" />
+
 
         </LinearLayout>
         <!--<include layout="@layout/base_toolbar"/>-->
@@ -47,8 +39,9 @@
             android:id="@+id/toDoRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_anchor="@+id/attachment_layout"
+            app:layout_anchorGravity="center"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addToDoItemFAB"

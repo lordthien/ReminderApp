@@ -1,5 +1,7 @@
 package com.example.ngocthien.remindertj.Main;
 
+import android.app.Application;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +9,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import com.example.ngocthien.remindertj.About.BlankFragment;
+import com.example.ngocthien.remindertj.AddGroupTask.MainAddGroupTask;
+import com.example.ngocthien.remindertj.Chatbot.ChatBotFragment;
 import com.example.ngocthien.remindertj.Chatbot.ChatbotActivity;
 //import com.example.ngocthien.remindertj.GroupTask.AddMember;
 import com.example.ngocthien.remindertj.GroupTask.AddMember;
@@ -53,7 +57,7 @@ public class MainActivity extends AppDefaultActivity implements NavigationView.O
         super.onCreate(savedInstanceState);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        sharedPreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(Start_Login.MyPREFERENCES_STARTLOGIN, Context.MODE_PRIVATE);
         sharedPreferences_getKey = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         saveData();
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -73,7 +77,6 @@ public class MainActivity extends AppDefaultActivity implements NavigationView.O
         View hView = (View) navigationView.getHeaderView(0);
         nav_phonenumber  = (TextView) hView.findViewById(R.id.phoneNumber);
         loadData();
-        navigationView.setNavigationItemSelectedListener(this);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new MainFragment()).commit();
@@ -81,15 +84,15 @@ public class MainActivity extends AppDefaultActivity implements NavigationView.O
         }
     }
     public void saveData(){
-         intent =getIntent();
+        intent = getIntent();
         SharedPreferences.Editor editor = sharedPreferences_getKey.edit();
         editor.putString(GETKEY_ITEM_NAME, intent.getStringExtra("GETKEY"));
-        Toast.makeText(this, "Hellllo" + intent.getStringExtra("GETKEY"), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Hellllo" + intent.getStringExtra("GETKEY"), Toast.LENGTH_SHORT).show();
         editor.apply();
     }
     public void loadData(){
         a = sharedPreferences.getString(Start_Login.PHONENUMBER_STARTlOGIN, "");
-        //nav_phonenumber.setText(a);
+        nav_phonenumber.setText(a);
     }
     @Override
     protected int contentViewLayoutRes() {
@@ -103,7 +106,6 @@ public class MainActivity extends AppDefaultActivity implements NavigationView.O
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
        getMenuInflater().inflate(R.menu.drawer_menu, menu);
-
         MenuItem item  =menu.findItem(R.id.search);
         SearchView searchView = (SearchView)item.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -119,23 +121,6 @@ public class MainActivity extends AppDefaultActivity implements NavigationView.O
             }
         });
         return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id){
-            case R.id.item1:
-                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.item2:
-                Toast.makeText(getApplicationContext(),"Item 2 Selected",Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.item3:
-                Toast.makeText(getApplicationContext(),"Item 3 Selected",Toast.LENGTH_LONG).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
     public void processserch(String searchItem){
         FirebaseRecyclerOptions<model> options =
@@ -165,14 +150,26 @@ public class MainActivity extends AppDefaultActivity implements NavigationView.O
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
                     break;
             case  R.id.chatbot:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChatbotActivity()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChatBotFragment()).commit();
+                break;
             case R.id.addmember:
                 Intent intent = new Intent(MainActivity.this, AddMember.class);
                 startActivity(intent);
+                break;
+            case R.id.logout:
+//                Intent intent1 = new Intent(MainActivity.this, Start_Login.class);
+//                startActivity(intent1);
+//                finish();
+                Intent i = new Intent(MainActivity.this, Start_Login.class);
+// set the new task and clear flags
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 }
 

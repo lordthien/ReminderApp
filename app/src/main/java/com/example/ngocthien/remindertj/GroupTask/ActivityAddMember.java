@@ -72,7 +72,7 @@ public class ActivityAddMember extends AppCompatActivity {
                         model.setDescription(da.child("description").getValue(String.class));
                         model.setDate(da.child("date").getValue(String.class));
                         model.setTime(da.child("time").getValue(String.class));
-                        Toast.makeText(ActivityAddMember.this, "getkey" + da.getKey(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(ActivityAddMember.this, "getkey" + da.getKey(), Toast.LENGTH_SHORT).show();
                         databaseReference1.child("UserInfo").child(user_phoneumber.getText().toString()).child("GroupTasks").child(namegroup.getText().toString()).child("SingleTask").child(da.getKey()).setValue(model);
                     }
                 } else

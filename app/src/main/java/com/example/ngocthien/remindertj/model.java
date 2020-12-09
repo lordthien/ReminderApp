@@ -1,5 +1,7 @@
 package com.example.ngocthien.remindertj;
 
+import java.util.ArrayList;
+
 public class model {
     String title, description, date, time;
 
@@ -41,7 +43,8 @@ public class model {
         this.date = date;
         this.time = time;
     }
-
     public model() {
     }
+
+
 }

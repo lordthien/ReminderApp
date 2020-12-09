@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ngocthien.remindertj">
-
     <uses-permission android:name="ANDROID.PERMISSION.INTERNET" />
     <uses-permission android:name="ANDROID.PERMISSION.ACCESS_NETWORK_STATE" />
-
     <application
         android:name=".Analytics.AnalyticsApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/CustomStyle.DarkTheme">
-        <activity android:name=".GroupTask.ActivityAddMember"></activity>
+        <activity android:name=".GroupTask.ActivityAddMember"
+            android:windowSoftInputMode="adjustPan|adjustResize"></activity>
         <activity android:name=".GroupTask.AddMember" />
         <activity
             android:name=".AddGroupTask.EditGroupTask"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan"
+          />
         <activity
             android:name=".AddGroupTask.ActivityAddGroupTask"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".AddGroupTask.MainAddGroupTask"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
-        <activity
-            android:name=".test"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".Login.ResetPasswordActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".Login.ForgotPasswordActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".Login.PasswordActivity" />
-        <activity android:name=".NewStartLogin">
+            android:windowSoftInputMode="adjustPan">
+
 
         </activity>
         <activity
+            android:name=".test"
+            android:windowSoftInputMode="stateHidden"
+            android:focusableInTouchMode="true"
+            android:focusable="true"/>
+        <activity
+            android:name=".Login.ResetPasswordActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:focusableInTouchMode="true"
+            android:focusable="true"/>
+        <activity
+            android:name=".Login.ForgotPasswordActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:focusableInTouchMode="true"
+            android:focusable="true"/>
+        <activity android:name=".Login.PasswordActivity" />
+        <activity android:name=".NewStartLogin"
+            android:focusableInTouchMode="true"
+            android:focusable="true">
+        </activity>
+        <activity
             android:name=".Login.Start_Login"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden"
+            android:focusableInTouchMode="true"
+            android:focusable="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -46,21 +57,30 @@
         </activity>
         <activity
             android:name=".Login.homepage"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Login.LoginActivity" />
         <activity
             android:name=".Main.MainActivity"
             android:label="@string/app_name"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
         <activity
             android:name=".AddToDo.AddToDoActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize"
             android:parentActivityName=".Main.MainActivity"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
+             />
         <activity android:name=".About.AboutActivity"
             ></activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

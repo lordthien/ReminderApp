@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="346dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,7 +31,12 @@
             app:boxStrokeColor="#FFFFFF"
             app:boxStrokeErrorColor="#CDDC39"
             app:counterTextColor="@color/accent"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
             app:hintTextColor="@color/amber"
+
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintBottom_toTopOf="@+id/textInput2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +44,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editPhone"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/autour_one"
@@ -49,13 +55,17 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInput2"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="345dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="96dp"
             android:hint="Enter password"
             android:textColorHint="#FFFFFF"
             app:boxStrokeColor="#FFFFFF"
             app:boxStrokeErrorColor="#CDDC39"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
+            android:focusable="true"
             app:counterTextColor="@color/accent"
             app:hintTextColor="@color/amber"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -67,6 +77,7 @@
                 android:id="@+id/editPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:fontFamily="@font/autour_one"
                 android:inputType="textPassword"
                 android:textColor="@color/primary_lightest" />

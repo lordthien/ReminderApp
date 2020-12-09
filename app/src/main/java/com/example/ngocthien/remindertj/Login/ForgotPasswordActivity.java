@@ -111,7 +111,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             recover_phonenumber.requestFocus();
         }
         if(phone.length() > 10 || phone.length()< 9){
-            recover_phonenumber.setError("please enter a valid phone");
+            recover_phonenumber.setError("Please enter a valid phone");
             recover_phonenumber.requestFocus();
             return;
         }
@@ -122,7 +122,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 TimeUnit.SECONDS,   // Unit of timeout
                 TaskExecutors.MAIN_THREAD,               // Activity (for callback binding)
                 mCallbacks);        // OnVerificationStateChangedCallbacks // what to do when the code sent
-        Toast.makeText(this, "1111111" , Toast.LENGTH_SHORT).show();
+
     }
     public PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         // the func execute automatically
@@ -130,7 +130,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         //
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
             String SMScode = phoneAuthCredential.getSmsCode();
-            Toast.makeText(ForgotPasswordActivity.this, "SMS code: " + SMScode, Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(ForgotPasswordActivity.this, "SMS code: " + SMScode, Toast.LENGTH_SHORT).show();
             if (SMScode != null){
                 PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeSent, SMScode);
                 signInWithPhoneAuthCredential(credential);
@@ -138,7 +138,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         }
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
-            Toast.makeText(ForgotPasswordActivity.this, e.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(ForgotPasswordActivity.this, "Fail",Toast.LENGTH_LONG).show();
         }
         // code has been sent but not on the same device
         @Override

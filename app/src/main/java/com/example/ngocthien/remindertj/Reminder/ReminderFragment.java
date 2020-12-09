@@ -61,9 +61,6 @@ public class ReminderFragment extends AppDefaultFragment {
         } else {
             getActivity().setTheme(R.style.CustomStyle_DarkTheme);
         }
-//        storeRetrieveData = new StoreRetrieveData(getContext(), MainFragment.FILENAME);
-//        mToDoItems = MainFragment.getLocallyStoredData(storeRetrieveData);
-
         ((AppCompatActivity) getActivity()).setSupportActionBar((Toolbar) view.findViewById(R.id.toolbar));
 
 
@@ -76,15 +73,11 @@ public class ReminderFragment extends AppDefaultFragment {
                 break;
             }
         }
-
         snoozeOptionsArray = getResources().getStringArray(R.array.snooze_options);
-
         mRemoveToDoButton = (Button) view.findViewById(R.id.toDoReminderRemoveButton);
         mtoDoTextTextView = (TextView) view.findViewById(R.id.toDoReminderTextViewBody);
         mSnoozeTextView = (TextView) view.findViewById(R.id.reminderViewSnoozeTextView);
         mSnoozeSpinner = (MaterialSpinner) view.findViewById(R.id.todoReminderSnoozeSpinner);
-
-//        mtoDoTextTextView.setBackgroundColor(item.getTodoColor());
         mtoDoTextTextView.setText(mItem.getToDoText());
 
         if (theme.equals(MainFragment.LIGHTTHEME)) {
@@ -104,18 +97,12 @@ public class ReminderFragment extends AppDefaultFragment {
                 changeOccurred();
                 saveData();
                 closeApp();
-//                finish();
             }
         });
 
-
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, snoozeOptionsArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_text_view, snoozeOptionsArray);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-
         mSnoozeSpinner.setAdapter(adapter);
-//        mSnoozeSpinner.setSelection(0);
     }
 
     @Override
@@ -126,7 +113,6 @@ public class ReminderFragment extends AppDefaultFragment {
     private void closeApp() {
         Intent i = new Intent(getContext(), MainActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        i.putExtra(EXIT, true);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(MainFragment.SHARED_PREF_DATA_SET_CHANGED, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(EXIT, true);
@@ -142,7 +128,6 @@ public class ReminderFragment extends AppDefaultFragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(MainFragment.SHARED_PREF_DATA_SET_CHANGED, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(MainFragment.CHANGE_OCCURED, true);
-//        editor.commit();
         editor.apply();
     }
 
@@ -167,25 +152,6 @@ public class ReminderFragment extends AppDefaultFragment {
                 return 0;
         }
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.toDoReminderDoneMenuItem:
-//                Date date = addTimeToDate(valueFromSpinner());
-//                mItem.setToDoDate(date);
-//                mItem.setHasReminder(true);
-//                Log.d("NgocThien", "Date Changed to: " + date);
-//                changeOccurred();
-//                saveData();
-//                closeApp();
-//                //foo
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
 
     private void saveData() {
         try {

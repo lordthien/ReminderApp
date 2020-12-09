@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText editTextPhone, editTextCode;
     TextInputLayout txtInput1, txtInput2;
     public static final String MyPREFERENCES = "MYPREF";
-    public static final String FB_PHONENUMBER ="phonenumber";
+
     public static final String PHONENUMBER = "PHoneNUmber";
     SharedPreferences sharedPreferences;
     @Override
@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                     else {
                         phone = editTextPhone.getText().toString();
                         mAuth = FirebaseAuth.getInstance();
-                        //Toast.makeText(LoginActivity.this, "phone number " + phone + "" + phone.length(), Toast.LENGTH_SHORT).show();
+
                         sendVerificationCode(phone);
                         btnGetVC.setVisibility(View.GONE);
                         editTextPhone.setVisibility(View.GONE);
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                         editTextCode.setVisibility(View.VISIBLE);
                         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                         saveData(phone);
-                        // Toast.makeText(LoginActivity.this, "Added data successful", Toast.LENGTH_SHORT).show();
+
                     }
                 }
             });
@@ -100,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //here you can open new activity
-                            Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(LoginActivity.this, PasswordActivity.class);
                             startActivity(intent);
                         } else {
@@ -127,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                 TimeUnit.SECONDS,   // Unit of timeout
                  TaskExecutors.MAIN_THREAD,               // Activity (for callback binding)
                 mCallbacks);        // OnVerificationStateChangedCallbacks // what to do when the code sent
-        Toast.makeText(this, "1111111" , Toast.LENGTH_SHORT).show();
+
     }
     public PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new OnVerificationStateChangedCallbacks() {
         // the func execute automatically

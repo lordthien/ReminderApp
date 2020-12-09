@@ -1,63 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:openDrawer="start"
-    tools:context=".AddGroupTask.MainAddGroupTask">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <!--<include layout="@layout/base_toolbar"/>-->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/myCoordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <include
-            android:id="@+id/include2"
-            layout="@layout/base_toolbar"
-            android:layout_height="46dp"
-            app:layout_constraintBottom_toBottomOf="@+id/recview1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="IncludeLayoutParam" />
-
         <FrameLayout
-            android:elevation="0dp"
-            android:background="#ffffff"
             android:id="@+id/attachment_layout"
             android:layout_width="match_parent"
-            android:layout_height="603dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" tools:targetApi="lollipop">
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:id="@+id/toDoEmptyView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recview1"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/empty_view_bg" />
+            <TextView
+                android:id="@+id/todo_textview"
                 android:layout_width="match_parent"
-                android:layout_height="603dp"
-                android:scrollbars="vertical" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:elevation="2dp"
-                android:layout_gravity="bottom|right"
-                android:layout_marginRight="35dp"
-                android:layout_marginBottom="35dp"
-                android:outlineAmbientShadowColor="#FFFFFF"
-                app:srcCompat="@drawable/abc_vector_test" />
-        </FrameLayout>
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:paddingBottom="8dp"
+                android:text="@string/no_to_dos"
+                android:fontFamily="@font/autour_one"
+                android:textColor="@color/secondary_text"
+                android:textSize="16sp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu" />
-</androidx.drawerlayout.widget.DrawerLayout>
+        </LinearLayout>
+        <!--<include layout="@layout/base_toolbar"/>-->
 
+
+        <!--</android.support.design.widget.AppBarLayout>-->
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_add_group_task"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_anchor="@+id/attachment_layout"
+            app:layout_anchorGravity="center"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton_add_group_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/divider"
+            android:src="@drawable/ic_add_white_24dp"
+            app:layout_anchor="@id/attachment_layout"
+            app:layout_anchorGravity="bottom|right|end"
+            />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>
